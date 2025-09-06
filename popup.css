@@ -1,0 +1,516 @@
+/* --- STYLES FOR THE BROWSER ACTION POPUP --- */
+body.popup-body {
+    width: 250px;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #fdfcfd;
+    color: #4b4453;
+}
+
+.popup-container {
+    padding: 16px;
+    text-align: center;
+}
+
+.popup-icon {
+    width: 48px;
+    height: 48px;
+    color: #a75d7b;
+    margin-bottom: 8px;
+}
+
+.popup-container h2 {
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    color: #4b4453;
+}
+
+.popup-container p {
+    font-size: 14px;
+    margin: 0;
+    color: #84798f;
+    line-height: 1.4;
+}
+
+/* --- STYLES FOR THE DEVTOOLS PANEL --- */
+/* These styles will now only apply inside the DevTools panel */
+.devtools-body {
+    background-color: var(--body-bg-color);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    font-size: 14px;
+}
+
+/* 
+  Define color variables. This is a new high-contrast, blue-based theme.
+*/
+:root {
+    --body-bg-color: #f8f9fa;
+    --text-color: #212529;
+    --text-color-secondary: #6c757d;
+    --button-bg-color: #007bff; /* Primary Blue */
+    --button-text-color: #ffffff;
+    --border-color: #dee2e6;
+    --code-bg-color: #e9ecef;
+    --link-color: #0056b3;
+
+    /* High-contrast impact colors */
+    --impact-critical-color: #dc3545; /* Red */
+    --impact-serious-color: #fd7e14;  /* Orange */
+    --impact-moderate-color: #ffc107; /* Yellow */
+    --impact-minor-color: #6c757d;   /* Grey */
+
+    /* Status message backgrounds */
+    --status-info-bg: #e7f3ff;
+    --status-info-text: #0056b3;
+    --status-success-bg: #eaf5ec;
+    --status-success-text: #155724;
+    --status-error-bg: #f8d7da;
+    --status-error-text: #721c24;
+
+    /* Summary card backgrounds */
+    --summary-critical-bg: #fdf3f4;
+    --summary-serious-bg: #fff8f2;
+    --summary-moderate-bg: #fffcf2;
+    --summary-minor-bg: #f8f9fa;
+}
+
+/*
+  Dark theme overrides for the new palette.
+*/
+.theme-dark {
+    --body-bg-color: #212529;
+    --text-color: #f8f9fa;
+    --text-color-secondary: #adb5bd;
+    --button-bg-color: #3395ff; /* Brighter Blue for dark mode */
+    --button-text-color: #ffffff; /* CHANGED: Use white text for high contrast */
+    --border-color: #495057;
+    --code-bg-color: #343a40;
+    --link-color: #58abff;
+
+    /* High-contrast impact colors for dark mode */
+    --impact-critical-color: #ff8a96;
+    --impact-serious-color: #ffc999;
+    --impact-moderate-color: #ffe08a;
+    --impact-minor-color: #adb5bd;
+
+    /* Status message backgrounds for dark mode */
+    --status-info-bg: #1c2e4a;
+    --status-info-text: #a8d3ff;
+    --status-success-bg: #1c3a26;
+    --status-success-text: #a3d4b1;
+    --status-error-bg: #4a2126;
+    --status-error-text: #f7a8a8;
+
+    /* Summary card backgrounds for dark mode */
+    --summary-critical-bg: #4a2126;
+    --summary-serious-bg: #4a321c;
+    --summary-moderate-bg: #4a421c;
+    --summary-minor-bg: #343a40;
+}
+
+/* General body and container styles using variables */
+body {
+    background-color: var(--body-bg-color);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin: 0 0 1rem 0;
+}
+
+/* Link styles using variables */
+a {
+    color: var(--link-color);
+}
+
+/* Button styles using variables - Increased size */
+button {
+    width: 100%;
+    padding: 0.85rem 1rem; /* Increased padding */
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px; /* Slightly more rounded */
+    font-size: 1.05rem; /* Slightly larger font */
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Status message styles using variables */
+.status-message {
+    padding: 0.75rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.status-info {
+    background-color: var(--status-info-bg);
+    color: var(--status-info-text);
+}
+
+.status-success {
+    background-color: var(--status-success-bg);
+    color: var(--status-success-text);
+}
+
+.status-error {
+    background-color: var(--status-error-bg);
+    color: var(--status-error-text);
+}
+
+/* --- Accordion Styles --- */
+.violation-group {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+.violation-group[open] {
+    border-bottom-width: 1px;
+}
+.violation-group[open] .violation-summary {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.violation-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    list-style: none; /* Remove default marker */
+}
+.violation-summary::-webkit-details-marker {
+    display: none; /* Hide for Chrome/Safari */
+}
+.violation-summary::before { /* Custom marker */
+    content: '►';
+    font-size: 0.7em;
+    transition: transform 0.2s;
+}
+.violation-group[open] > .violation-summary::before {
+    transform: rotate(90deg);
+}
+
+.impact-indicator {
+    text-transform: capitalize;
+    font-weight: 600;
+    padding: 0.1rem 0.4rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+.impact-critical .impact-indicator { border: 1px solid var(--impact-critical-color); color: var(--impact-critical-color); }
+.impact-serious .impact-indicator { border: 1px solid var(--impact-serious-color); color: var(--impact-serious-color); }
+.impact-moderate .impact-indicator { border: 1px solid var(--impact-moderate-color); color: var(--impact-moderate-color); }
+.impact-minor .impact-indicator { border: 1px solid var(--impact-minor-color); color: var(--impact-minor-color); }
+
+.violation-title {
+    font-weight: 500;
+    flex-grow: 1;
+}
+.violation-node-count {
+    font-size: 0.8rem;
+    color: var(--text-color-secondary);
+    flex-shrink: 0;
+}
+
+.violation-details {
+    padding: 1rem;
+}
+.violation-description {
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+    color: var(--text-color-secondary);
+}
+.violation-node {
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+}
+.violation-node:first-child {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+pre.html, code.selector {
+    background-color: var(--code-bg-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: "Menlo", "Consolas", "Monaco", monospace;
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-color);
+}
+
+/* Severity styles */
+.severity-group {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.severity-critical {
+    border-left: 4px solid #dc3545;
+    background-color: #fff5f5;
+}
+
+.severity-serious {
+    border-left: 4px solid #fd7e14;
+    background-color: #fff9f0;
+}
+
+.severity-moderate {
+    border-left: 4px solid #ffc107;
+    background-color: #fffbe6;
+}
+
+.severity-minor {
+    border-left: 4px solid #17a2b8;
+    background-color: #f0f9fc;
+}
+
+.export-btn {
+    margin: 10px 0;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.export-btn:hover {
+    background-color: #0056b3;
+}
+
+/* --- Inspect Element Button --- */
+.goto-element-btn {
+    /* Override default button styles to be smaller */
+    width: auto;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0 0 0 8px; /* Reset margin and add left margin */
+    vertical-align: middle;
+    border: 1px solid var(--border-color);
+    background-color: var(--code-bg-color);
+    color: var(--text-color);
+    border-radius: 3px;
+}
+
+.goto-element-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* --- Fix Suggestions --- */
+.fix-suggestions {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.fix-suggestions strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.fix-suggestions ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--text-color-secondary);
+    font-size: 0.9em;
+}
+
+.fix-suggestions li {
+    margin-bottom: 0.5rem;
+}
+
+.fix-suggestions li:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Updated styles for the top action bar and results header --- */
+.top-bar {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+/* NEW: Specific styles for the primary run button */
+#run-audit-btn {
+    flex-grow: 1;
+    margin-bottom: 0;
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-weight: 700; /* ADDED: Makes the button text bolder */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#run-audit-btn:hover:not(:disabled) {
+    /* A slightly lighter/darker shade on hover */
+    filter: brightness(1.1);
+}
+
+#run-audit-btn:active:not(:disabled) {
+    /* A subtle press-down effect */
+    transform: scale(0.99);
+    filter: brightness(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+/* New styles for the results header */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* This container will appear when results are ready */
+}
+
+/* Adjust status message to fit in the flex container */
+#status-message {
+    flex-grow: 1;
+    text-align: left; /* Align text to the left instead of center */
+    margin-bottom: 0; /* Margin is now on the parent */
+    padding-left: 0; /* Remove padding for a cleaner look */
+    background-color: transparent; /* Make background transparent */
+    color: var(--text-color); /* Use standard text color */
+}
+
+/* New styles for the export button */
+#export-btn {
+    /* Override default button styles for a link-like appearance */
+    width: auto;
+    padding: 4px 10px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--link-color);
+    border: 1px solid transparent; /* This line was incomplete */
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* --- Summary Dashboard Styles --- */
+#summary-dashboard {
+    display: grid; /* Use grid for a responsive layout */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Summary card styles */
+.summary-card {
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: left;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.theme-dark .summary-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.summary-card .summary-count {
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.summary-card .summary-label {
+    display: block;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* Use impact colors for the cards */
+.summary-card.impact-critical { background-color: var(--summary-critical-bg); border-color: var(--impact-critical-color); color: var(--impact-critical-color); }
+.summary-card.impact-serious { background-color: var(--summary-serious-bg); border-color: var(--impact-serious-color); color: var(--impact-serious-color); }
+.summary-card.impact-moderate { background-color: var(--summary-moderate-bg); border-color: var(--impact-moderate-color); color: var(--impact-moderate-color); }
+.summary-card.impact-minor { background-color: var(--summary-minor-bg); color: var(--text-color-secondary); }
+
+
+/* --- Filter Controls Styles --- */
+#filter-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-btn {
+    /* Override default button styles */
+    width: auto;
+    margin: 0;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    border-radius: 15px; /* Pill shape */
+}
+
+.filter-btn.active {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border-color: var(--button-bg-color);
+}
+
+.filter-btn:not(.active):hover {
+    background-color: var(--code-bg-color);
+}
+
+/* --- NEW: Style for the no-results message --- */
+.no-results-message {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-color-secondary);
+    border: 1px dashed var(--border-color);
+    border-radius: 4px;
+    margin-top: 1rem;
+}

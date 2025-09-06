@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Axe WCAG 2.2 AA Auditor</h1>
+        <div class="top-bar">
+            <button id="run-audit-btn">Run Audit</button>
+        </div>
+        
+        <!-- This header will contain the status and the export button -->
+        <div class="results-header">
+            <div id="status-message"></div>
+            <button id="export-btn" class="hidden">Export as JSON</button>
+        </div>
+
+        <!-- NEW: Summary Dashboard Container -->
+        <div id="summary-dashboard" class="hidden"></div>
+
+        <!-- NEW: Filter Controls -->
+        <div id="filter-controls" class="hidden">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="critical">Critical</button>
+            <button class="filter-btn" data-filter="serious">Serious</button>
+            <button class="filter-btn" data-filter="moderate">Moderate</button>
+            <button class="filter-btn" data-filter="minor">Minor</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+    <script src="panel.js"></script>
+</body>
+</html>
