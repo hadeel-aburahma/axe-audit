@@ -13,7 +13,7 @@ function runAxeInPageContext() {
       
       const results = await window.axe.run(document, {
         // KEY CHANGE: Use 'wcag2aa' to include all Level AA rules, including color-contrast.
-        runOnly: { type: 'tag', values: ['wcag2aa'] }, 
+        runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice', 'experimental'] }, 
         rules: { 
             // You can still explicitly enable WCAG 2.2 rules here if they are disabled by default.
             'target-size': { enabled: true } 
